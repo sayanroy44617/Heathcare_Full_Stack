@@ -1,5 +1,6 @@
 package com.healthcare.backend_health;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +24,11 @@ public class BackendHealthApplication {
 			users.save(new AuthUser(2, "admin", encoder.encode("password"), "yy@mail.com"));
 
 		};
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 
 }
