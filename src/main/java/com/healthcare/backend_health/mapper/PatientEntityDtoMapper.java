@@ -1,15 +1,16 @@
 package com.healthcare.backend_health.mapper;
 
-// import org.mapstruct.Mapper;
+ import org.mapstruct.Mapper;
 
 import com.healthcare.backend_health.dto.PatientEntityDTO;
 import com.healthcare.backend_health.entity.PatientEntity;
+import org.mapstruct.ReportingPolicy;
 
-// @Mapper(componentModel = "spring")
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE,componentModel = "spring")
 public interface PatientEntityDtoMapper {
 
-    // public PatientEntity dtoToEntity(PatientEntityDTO patientEntityDTO);
+     PatientEntity dtoToEntity(PatientEntityDTO patientEntityDTO);
 
-    // public PatientEntityDTO entityToDto(PatientEntity patientEntity);
+     PatientEntityDTO entityToDto(PatientEntity patientEntity);
 
 }
