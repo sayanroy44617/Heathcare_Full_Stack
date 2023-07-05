@@ -1,5 +1,7 @@
 package com.healthcare.backend_health.service;
 
+import com.healthcare.backend_health.mapper.PatientEntityDtoMapper;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,20 +15,16 @@ import lombok.Data;
 
 @Service
 @Data
+@AllArgsConstructor
 public class PatientRegistrationService {
 
-    @Autowired
     private PatientRepository patientRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
+    private PatientEntityDtoMapper patientEntityDtoMapper;
     private PasswordEncoder encoder;
 
     public void createPatient(PatientEntityDTO patientEntityDTO) {
 
-        PatientEntity patientEntity = modelMapper.map(patientEntityDTO, PatientEntity.class);
+        PatientEntity patientEntity = patientEntityDtoMapper.dtoToEntity(patientEntityDTO);
         patientEntity.getAuthUser().setPassword(encoder.encode(patientEntity.getAuthUser().getPassword()));
         patientRepository.save(patientEntity);
 
